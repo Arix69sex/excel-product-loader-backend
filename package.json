@@ -1,0 +1,25 @@
+{
+  "name": "excel-product-loader-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arix69sex/excel-product-loader-backend.git"
+  },
+  "author": "Aria Sharifi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arix69sex/excel-product-loader-backend/issues"
+  },
+  "homepage": "https://github.com/Arix69sex/excel-product-loader-backend#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7"
+  }
+}
