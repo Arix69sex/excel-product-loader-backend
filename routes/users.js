@@ -1,5 +1,8 @@
 import { Router } from 'express';
-import { create, findOne } from './models/User';
+import { createUser } from '../interactors/createUser.interactor';
+import { getUserById } from '../interactors/getUserById.interactor';
+import { getUserByUsername } from '../interactors/getUserByUsername.interactor';
+
 import Crypter from "../lib/crypter"
 import JWT from "../lib/jwt"
 const router = Router();

@@ -1,11 +1,14 @@
 import { Router } from 'express';
-import { create, findOne } from './models/Product';
+import { createProduct } from '../interactors/createProduct.interactor';
+import { getAllProducts } from '../interactors/getAllProducts.interactor';
+import { getProductById } from '../interactors/getProductById.interactor';
+
 import Crypter from "../lib/crypter"
 import authMiddleware from "../middleware/authMiddleware";
 
 const router = Router();
 
-router.get('/products', async (req, res) => {
+router.get('/products', authMiddleware, async (req, res) => {
     const { username, password } = req.body;
     try {
         const hashedPassword = await Crypter.hash(password);
@@ -16,7 +19,7 @@ router.get('/products', async (req, res) => {
     }
 });
 
-router.get(`/products/${productId}`, async (req, res) => {
+router.get(`/products/${productId}`, authMiddleware, async (req, res) => {
     const { username, password } = req.body;
     Product.findAll({ include: Author }).then(books => {
         books.forEach(book => {
@@ -33,7 +36,7 @@ router.get(`/products/${productId}`, async (req, res) => {
 });
 
 
-router.post('/products', async (req, res) => {
+router.post('/products', authMiddleware,  async (req, res) => {
     const { username, password } = req.body;
     try {
         const hashedPassword = await Crypter.hash(password);
