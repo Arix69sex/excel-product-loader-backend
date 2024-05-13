@@ -1,7 +1,13 @@
 import { DataTypes } from 'sequelize';
+import { User } from './user';
 import { define } from '../db';
 
 const Product = define('Product', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     hadle: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -39,5 +45,8 @@ const Product = define('Product', {
         allowNull: false,
     }
 });
+
+Product.belongsTo(User, { foreignKey: 'userId' });
+
 
 export default Product;
