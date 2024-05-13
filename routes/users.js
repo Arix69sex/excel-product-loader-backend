@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { createUser } from '../interactors/createUser.interactor';
-import { getUserByUsername } from '../interactors/getUserByUsername.interactor';
 
-import Crypter from "../lib/crypter"
-import JWT from "../lib/jwt"
+import createUser  from '../interactors/createUser.interactor.js';
+import getUserByUsername from '../interactors/getUserByUsername.interactor.js';
+import Crypter from "../lib/crypter.js"
+import JWT from "../lib/jwt.js"
+
 const router = Router();
 
 router.post('/signup', async (req, res) => {
@@ -11,8 +12,10 @@ router.post('/signup', async (req, res) => {
     try {
         const hashedPassword = await Crypter.hash(password);
         const newUser = await createUser({ username, password: hashedPassword });
-        res.status(201).json(newUser);
+        const jwt = JWT.sign(newUser.id, newUser.username)
+        return res.status(200).json({ jwt: jwt });
     } catch (err) {
+        console.error(err)
         res.status(500).json({ error: err.message });
     }
 });

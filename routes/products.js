@@ -1,15 +1,15 @@
 import { Router } from 'express';
-import { createProduct } from '../interactors/createProduct.interactor';
-import { getAllProducts } from '../interactors/getAllProducts.interactor';
-import { getProductById } from '../interactors/getProductById.interactor';
-import authMiddleware from "../middleware/authMiddleware";
+import createProducts from '../lib/createProducts.js';
+import getAllProducts from '../interactors/getAllProducts.interactor.js';
+import getProductById from '../interactors/getProductById.interactor.js';
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = Router();
 
-router.get('/products', authMiddleware, async (req, res) => {
+router.get('', authMiddleware, async (req, res) => {
     const user = req.user
     try {
-        const productsOfUser = getAllProducts(user.userId)
+        const productsOfUser = await getAllProducts(user.id)
         res.status(201).json({
             products: productsOfUser
         });
@@ -18,11 +18,11 @@ router.get('/products', authMiddleware, async (req, res) => {
     }
 });
 
-router.get(`/products/:productId`, authMiddleware, async (req, res) => {
+router.get(`/:productId`, authMiddleware, async (req, res) => {
     const user = req.user
     const productId = req.params.productId;
     try {
-        const product = getProductById(user.userId, productId)
+        const product = await getProductById(user?.id, productId)
         res.status(201).json({
             product: product
         });
@@ -31,11 +31,11 @@ router.get(`/products/:productId`, authMiddleware, async (req, res) => {
     }
 });
 
-router.post('/products', authMiddleware,  async (req, res) => {
+router.post('', authMiddleware,  async (req, res) => {
     const user = req.user
     const { products } = req.body;
     try {
-        await createProduct(user.userId, products)
+        await createProducts(user?.id, products)
         res.status(200).json({
             body: products
         });

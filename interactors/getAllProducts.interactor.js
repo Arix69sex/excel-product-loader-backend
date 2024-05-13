@@ -1,8 +1,8 @@
-import { Product } from './models/Product';
+import  Product  from '../models/product.js';
 
 const getAllProducts = async (userId) => { 
-    const product = await Product.findAll({ where: { userId: userId } });
-    return product
+    const products = await Product.findAll({ where: { userId: userId } });
+    return products
 };
 
 export default getAllProducts;

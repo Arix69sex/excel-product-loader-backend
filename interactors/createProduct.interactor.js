@@ -1,4 +1,4 @@
-import { Product } from './models/Product';
+import  Product  from '../models/product.js';
 
 const createProduct = async (data) => { 
     const product = Product.build(data)

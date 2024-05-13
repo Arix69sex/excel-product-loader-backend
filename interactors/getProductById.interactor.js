@@ -1,4 +1,4 @@
-import { Product } from './models/Product';
+import  Product  from '../models/product.js';
 
 const getProductById = async (userId, productId) => { 
     const product = await Product.findAll({ where: { userId: userId, id: productId } });

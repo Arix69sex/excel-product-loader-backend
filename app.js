@@ -1,17 +1,18 @@
 import express from 'express';
-import { json } from 'body-parser';
-import { sync } from './db';
-import authRoutes from './routes/auth';
-import profileRoutes from './routes/profile';
+import bodyParser from 'body-parser';
+const { json } = bodyParser;
+import dbInstance from './db/db.js';
+import productsRoutes from './routes/products.js';
+import usersRoutes from './routes/users.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(json());
-app.use('/api/auth', authRoutes);
-app.use('/api/profile', profileRoutes);
+app.use('/api/products', productsRoutes);
+app.use('/api/users', usersRoutes);
 
-sync().then(() => {
+dbInstance.sync().then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });

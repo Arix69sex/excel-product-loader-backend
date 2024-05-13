@@ -1,14 +1,14 @@
 import { DataTypes } from 'sequelize';
-import { User } from './user';
-import { define } from '../db';
+import User from './user.js';
+import dbInstance from '../db/db.js';
 
-const Product = define('Product', {
+const Product = dbInstance.define('Product', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    hadle: {
+    handle: {
         type: DataTypes.STRING,
         allowNull: false,
     },
