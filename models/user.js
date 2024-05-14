@@ -26,9 +26,9 @@ const User = dbInstance.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
-            len: {
-                args: [8, 20],
-                msg: 'Password must be between 8 and 20 characters in length.',
+            min: {
+                args: [8],
+                msg: 'Password must be at least 8 characters long.',
               }
         }
     }
