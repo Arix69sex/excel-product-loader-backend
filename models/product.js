@@ -10,19 +10,19 @@ const Product = dbInstance.define('Product', {
     },
     handle: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     description: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     sku: {
         type: DataTypes.DOUBLE,
-        allowNull: false,
+        allowNull: true,
     },
     grams: {
         type: DataTypes.FLOAT,
@@ -30,19 +30,19 @@ const Product = dbInstance.define('Product', {
     },
     stock: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     price: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
     },
     comparePrice: {
         type: DataTypes.DOUBLE,
-        allowNull: false,
+        allowNull: true,
     },
     barcode: {
         type: DataTypes.DOUBLE,
-        allowNull: false,
+        allowNull: true,
     }
 });
 

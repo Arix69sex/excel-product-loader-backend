@@ -1,7 +1,7 @@
 import  Product  from '../models/product.js';
 
-const getProductById = async (userId, productId) => { 
-    const product = await Product.findAll({ where: { userId: userId, id: productId } });
+const getProductById = async (productId) => { 
+    const product = await Product.findByPk(productId);
     return product
 };
 

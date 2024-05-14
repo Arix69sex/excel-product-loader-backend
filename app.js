@@ -4,8 +4,12 @@ const { json } = bodyParser;
 import dbInstance from './db/db.js';
 import productsRoutes from './routes/products.js';
 import usersRoutes from './routes/users.js';
+import cors from 'cors';
 
 const app = express();
+
+app.use(cors());
+
 const PORT = process.env.PORT || 3000;
 
 app.use(json());
