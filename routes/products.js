@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import createProducts from '../lib/createProducts.js';
+import createProduct from '../interactors/createProduct.interactor.js';
 import getAllProducts from '../interactors/getAllProducts.interactor.js';
 import getProductById from '../interactors/getProductById.interactor.js';
 import deleteProduct from '../interactors/deleteProduct.interactor.js';
@@ -40,11 +40,11 @@ router.get(`/:productId`, authMiddleware, async (req, res) => {
 
 router.post('', authMiddleware,  async (req, res) => {
     const user = req.user
-    const { products } = req.body;
+    const product = req.body;
     try {
-        await createProducts(user?.id, products)
-        res.status(200).json({
-            body: products
+        await createProduct({...product, userId: user.id})
+        res.status(201).json({
+            body: product
         });
     } catch (err) {
         res.status(500).json({ error: err.message });
